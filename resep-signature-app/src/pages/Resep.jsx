@@ -167,7 +167,7 @@ const Resep = () => {
                     onClick={() => signatureRef.current?.clearSignature()}
                     tabIndex={3}
                   >
-                    Hapus
+                    Reset
                   </button>
                   <button
                     className="btn btn-success me-2"
@@ -187,7 +187,7 @@ const Resep = () => {
               </div>
             </div>
 
-          
+            <h5>Detail Resep</h5>
             <div
               className="mt-1"
               style={{ overflow: "auto", maxHeight: "55vh" }}

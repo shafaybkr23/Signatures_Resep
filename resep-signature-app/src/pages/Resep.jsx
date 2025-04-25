@@ -27,6 +27,7 @@ const Resep = () => {
           nama: pasienData.nama_lengkap,
           noRM: pasienData.no_mr || "-",
           tanggalLahir: pasienData.tgl_lahir || "-",
+          noBilling: pasienData.id_mrs || "-",
           resep: pasienData.resep || [], //belum ada data resep dri api
         });
         setFormSelesai(false);

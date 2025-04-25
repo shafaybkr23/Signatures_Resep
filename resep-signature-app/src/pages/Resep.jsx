@@ -58,17 +58,38 @@ const Resep = () => {
       return;
     }
 
-    const dataUrl = signatureRef.current.toDataURL();
+    // Dapatkan data gambar dalam format PNG
+    const dataUrl = signatureRef.current.toDataURL("image/png");
 
-    const downloadLink = document.createElement("a");
-    downloadLink.href = dataUrl;
-    downloadLink.download = `ttd_${idPasien}.png`;
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
+    // Membuat elemen gambar sementara untuk mengonversi ke JPG
+    const img = new Image();
+    img.src = dataUrl;
+    img.onload = () => {
+      // Membuat canvas untuk menggambar gambar
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      
+      // Menyesuaikan ukuran canvas dengan ukuran gambar tanda tangan
+      canvas.width = img.width;
+      canvas.height = img.height;
+      
+      // Menggambar gambar ke dalam canvas
+      ctx.drawImage(img, 0, 0);
+      
+      // Mengonversi gambar ke format JPG
+      const jpgDataUrl = canvas.toDataURL("image/jpeg", 1.0); // Menggunakan kualitas 100%
 
-    Swal.fire("Berhasil!", "Tanda tangan telah disimpan!", "success");
-    setFormSelesai(true);
+      // Membuat link untuk mendownload file JPG
+      const downloadLink = document.createElement("a");
+      downloadLink.href = jpgDataUrl;
+      downloadLink.download = `ttd_${idPasien}.jpg`; // Mengubah ekstensi menjadi .jpg
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+
+      Swal.fire("Berhasil!", "Tanda tangan telah disimpan!", "success");
+      setFormSelesai(true);
+    };
   };
 
   const handleKembali = () => {
@@ -203,172 +224,13 @@ const Resep = () => {
                     <th>Frekuensi</th>
                   </tr>
                 </thead>
-                {/* <tbody>
-                {pasien.resep.length > 0 ? (
-                  pasien.resep.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.nama}</td>
-                      <td>{item.dosis}</td>
-                      <td>{item.frekuensi}</td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="3">Tidak ada resep.</td>
-                  </tr>
-                )}
-              </tbody> */}
                 <tbody>
                   <tr>
                     <td>Amoxilin</td>
                     <td>Amoxilin</td>
                     <td>Amoxilin</td>
                   </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
-                  <tr>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                  </tr>
+                  {/* More rows as needed */}
                 </tbody>
               </table>
             </div>

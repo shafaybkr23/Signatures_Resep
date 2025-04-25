@@ -187,7 +187,7 @@ const Resep = () => {
               </div>
             </div>
 
-            <h5>Detail Resep</h5>
+          
             <div
               className="mt-1"
               style={{ overflow: "auto", maxHeight: "55vh" }}

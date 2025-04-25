@@ -68,21 +68,21 @@ const Resep = () => {
       // Membuat canvas untuk menggambar gambar
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
-      
+
       // Menyesuaikan ukuran canvas dengan ukuran gambar tanda tangan
       canvas.width = img.width;
       canvas.height = img.height;
-      
+
       // Menggambar gambar ke dalam canvas
       ctx.drawImage(img, 0, 0);
-      
+
       // Mengonversi gambar ke format JPG
       const jpgDataUrl = canvas.toDataURL("image/jpeg", 1.0); // Menggunakan kualitas 100%
 
       // Membuat link untuk mendownload file JPG
       const downloadLink = document.createElement("a");
       downloadLink.href = jpgDataUrl;
-      downloadLink.download = `ttd_${idPasien}.jpg`; // Mengubah ekstensi menjadi .jpg
+      downloadLink.download = `ttd_${pasien.noRM}.jpg`; // Menggunakan noRM dari data pasien
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);

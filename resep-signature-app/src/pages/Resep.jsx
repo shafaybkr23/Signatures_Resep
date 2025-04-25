@@ -175,7 +175,7 @@ const Resep = () => {
                       <strong>No Billing</strong>
                     </div>
                     <div className="col-1">:</div>
-                    <div className="col-7">{idPasien}</div>
+                    <div className="col-7">{noBilling}</div>
                   </div>
                 </div>
               </div>
@@ -220,12 +220,14 @@ const Resep = () => {
                 >
                   <tr>
                     <th>Nama Obat</th>
-                    <th>Dosis</th>
-                    <th>Frekuensi</th>
+                    <th>Satuan</th>
+                    <th>Jumlah</th>
+                    <th>Signa</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
+                    <td>Amoxilin</td>
                     <td>Amoxilin</td>
                     <td>Amoxilin</td>
                     <td>Amoxilin</td>

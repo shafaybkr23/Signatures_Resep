@@ -27,7 +27,6 @@ const Resep = () => {
           nama: pasienData.nama_lengkap,
           noRM: pasienData.no_mr || "-",
           tanggalLahir: pasienData.tgl_lahir || "-",
-          noBilling: pasienData.id_mrs || "-",
           resep: pasienData.resep || [], //belum ada data resep dri api
         });
         setFormSelesai(false);
@@ -175,7 +174,7 @@ const Resep = () => {
                       <strong>No Billing</strong>
                     </div>
                     <div className="col-1">:</div>
-                    <div className="col-7">{noBilling}</div>
+                    <div className="col-7">{idPasien}</div>
                   </div>
                 </div>
               </div>
@@ -220,14 +219,12 @@ const Resep = () => {
                 >
                   <tr>
                     <th>Nama Obat</th>
-                    <th>Satuan</th>
-                    <th>Jumlah</th>
-                    <th>Signa</th>
+                    <th>Dosis</th>
+                    <th>Frekuensi</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Amoxilin</td>
                     <td>Amoxilin</td>
                     <td>Amoxilin</td>
                     <td>Amoxilin</td>

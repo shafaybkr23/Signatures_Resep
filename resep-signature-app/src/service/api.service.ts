@@ -10,7 +10,6 @@ export interface PasienResponse {
   nama: string;
   no_rm: string;
   tanggal_lahir: string;
-  id_mrs: string;
   resep: Resep[];
 }
 

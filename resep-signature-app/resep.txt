@@ -1,0 +1,34 @@
+  //menyimpan ttd dalam format png dan disimpan di folder local (download)
+  // const saveSignature = () => {
+  //   if (!signatureRef.current?.isSigned()) {
+  //     Swal.fire(
+  //       "Tanda tangan kosong",
+  //       "Silakan isi tanda tangan terlebih dahulu.",
+  //       "warning"
+  //     );
+  //     return;
+  //   }
+  
+  //   const dataUrl = signatureRef.current.toDataURL();
+  
+  //   const downloadLink = document.createElement("a");
+  //   downloadLink.href = dataUrl;
+  //   downloadLink.download = `ttd_${idPasien}.png`;
+  //   document.body.appendChild(downloadLink);
+  //   downloadLink.click();
+  //   document.body.removeChild(downloadLink);
+  
+  //   Swal.fire("Berhasil!", "Tanda tangan telah disimpan!", "success");
+  //   setFormSelesai(true);
+  // };  
+
+
+SignatureCanvas awal
+  // useImperativeHandle(ref, () => ({
+  //   clearSignature: () => {
+  //     const canvas = canvasRef.current;
+  //     if (canvas && ctx) {
+  //       ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //     }
+  //   }
+  // }));

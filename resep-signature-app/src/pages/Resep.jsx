@@ -87,8 +87,7 @@ const Resep = () => {
       downloadLink.click();
       document.body.removeChild(downloadLink);
 
-      Swal.fire("Berhasil!", "Tanda tangan telah disimpan!", "success");
-      setFormSelesai(true);
+      setFormSelesai(true); // Menandakan form selesai
     };
   };
 

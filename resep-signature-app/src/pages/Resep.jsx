@@ -220,14 +220,12 @@ const Resep = () => {
                 >
                   <tr>
                     <th>Nama Obat</th>
-                    <th>Satuan</th>
-                    <th>Jumlah</th>
-                    <th>Signa</th>
+                    <th>Dosis</th>
+                    <th>Frekuensi</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Amoxilin</td>
                     <td>Amoxilin</td>
                     <td>Amoxilin</td>
                     <td>Amoxilin</td>

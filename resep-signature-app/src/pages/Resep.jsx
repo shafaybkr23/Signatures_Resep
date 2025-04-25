@@ -184,21 +184,21 @@ const Resep = () => {
                 <SignatureCanvas ref={signatureRef} />
                 <div className="mt-3">
                   <button
-                    className="btn btn-warning me-2"
+                    className="btn btn-warning btn-sm me-2"
                     onClick={() => signatureRef.current?.clearSignature()}
                     tabIndex={3}
                   >
                     Reset
                   </button>
                   <button
-                    className="btn btn-success me-2"
+                    className="btn btn-success btn-sm me-2"
                     onClick={saveSignature}
                     tabIndex={4}
                   >
                     Simpan
                   </button>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger btn-sm"
                     onClick={handleKembali}
                     tabIndex={5}
                   >

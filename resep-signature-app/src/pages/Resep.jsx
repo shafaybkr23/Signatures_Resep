@@ -20,7 +20,6 @@ const Resep = () => {
 
     try {
       const response = await getPasienById(trimmedId);
-
       if (response && response.list && response.list.length > 0) {
         const pasienData = response.list[0];
         setPasien({
@@ -28,7 +27,7 @@ const Resep = () => {
           noRM: pasienData.no_mr || "-",
           tanggalLahir: pasienData.tgl_lahir || "-",
           noBilling: pasienData.id_mrs || "-",
-          resep: pasienData.resep || [], //belum ada data resep dri api
+          resep: pasienData.resep || [], // kalau belum ada data resep dari API
         });
         setFormSelesai(false);
       } else {
@@ -62,34 +61,38 @@ const Resep = () => {
     // Dapatkan data gambar dalam format PNG
     const dataUrl = signatureRef.current.toDataURL("image/png");
 
-    // Membuat elemen gambar sementara untuk mengonversi ke JPG
+    // Membuat elemen gambar sementara
     const img = new Image();
-    img.src = dataUrl;
     img.onload = () => {
-      // Membuat canvas untuk menggambar gambar
+      // Membuat canvas baru
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
 
-      // Menyesuaikan ukuran canvas dengan ukuran gambar tanda tangan
+      // Menyesuaikan ukuran canvas
       canvas.width = img.width;
       canvas.height = img.height;
 
-      // Menggambar gambar ke dalam canvas
+      // Mengisi canvas dengan background putih (supaya JPG tidak hitam)
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Menggambar tanda tangan di atas background putih
       ctx.drawImage(img, 0, 0);
 
-      // Mengonversi gambar ke format JPG
-      const jpgDataUrl = canvas.toDataURL("image/jpeg", 1.0); // Menggunakan kualitas 100%
+      // Konversi canvas ke JPG
+      const jpgDataUrl = canvas.toDataURL("image/jpeg", 1.0);
 
-      // Membuat link untuk mendownload file JPG
+      // Membuat link download
       const downloadLink = document.createElement("a");
       downloadLink.href = jpgDataUrl;
-      downloadLink.download = `ttd_${pasien.noRM}.jpg`; // Menggunakan noRM dari data pasien
+      downloadLink.download = `ttd_${pasien.noRM}.jpg`;
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
 
-      setFormSelesai(true); // Menandakan form selesai
+      setFormSelesai(true);
     };
+    img.src = dataUrl;
   };
 
   const handleKembali = () => {
@@ -148,32 +151,24 @@ const Resep = () => {
           >
             <div className="row">
               <div className="col-md-6">
-                <div className="detail-resep mt-3 small">
+                <div className="detail-resep mt-2 small">
                   <div className="row">
-                    <div className="col-4">
-                      <strong>No RM</strong>
-                    </div>
+                    <div className="col-4"><strong>No RM</strong></div>
                     <div className="col-1">:</div>
                     <div className="col-7">{pasien.noRM}</div>
                   </div>
                   <div className="row">
-                    <div className="col-4">
-                      <strong>Nama</strong>
-                    </div>
+                    <div className="col-4"><strong>Nama</strong></div>
                     <div className="col-1">:</div>
                     <div className="col-7">{pasien.nama}</div>
                   </div>
                   <div className="row">
-                    <div className="col-4">
-                      <strong>Tanggal Lahir</strong>
-                    </div>
+                    <div className="col-4"><strong>Tanggal Lahir</strong></div>
                     <div className="col-1">:</div>
                     <div className="col-7">{pasien.tanggalLahir}</div>
                   </div>
                   <div className="row">
-                    <div className="col-4">
-                      <strong>No Billing</strong>
-                    </div>
+                    <div className="col-4"><strong>No Billing</strong></div>
                     <div className="col-1">:</div>
                     <div className="col-7">{pasien.noBilling}</div>
                   </div>
@@ -220,17 +215,19 @@ const Resep = () => {
                 >
                   <tr>
                     <th>Nama Obat</th>
-                    <th>Dosis</th>
-                    <th>Frekuensi</th>
+                    <th>Satuan</th>
+                    <th>Jumlah</th>
+                    <th>Signa</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Amoxilin</td>
-                    <td>Amoxilin</td>
-                    <td>Amoxilin</td>
+                    <td>Tablet</td>
+                    <td>10</td>
+                    <td>3x1</td>
                   </tr>
-                  {/* More rows as needed */}
+                  {/* Tambah resep lain jika perlu */}
                 </tbody>
               </table>
             </div>

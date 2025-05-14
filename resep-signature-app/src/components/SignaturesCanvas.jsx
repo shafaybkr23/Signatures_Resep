@@ -85,18 +85,37 @@ const SignatureCanvas = forwardRef((props, ref) => {
   }));  
 
   return (
-    <canvas
-      ref={canvasRef}
-      className='border w-100'
-      style={{ touchAction: 'none', backgroundColor: '#ffff', height: '150' }}
-      onMouseDown={startDrawing}
-      onMouseMove={draw}
-      onMouseUp={stopDrawing}
-      onMouseLeave={stopDrawing}
-      onTouchStart={startDrawing}
-      onTouchMove={draw}
-      onTouchEnd={stopDrawing}
-    />
+    <div
+      className="mt-2"
+      style={{ position: "relative", display: "inline-block" }}
+    >
+      {/* text di atas border */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-10px",
+          left: "10px",
+          backgroundColor: "transparant",
+          padding: "0 5px",
+          fontWeight: "bold",
+          fontSize: "14px",
+        }}
+      >
+        Tanda Tangan
+      </div>
+      <canvas
+        ref={canvasRef}
+        className="border w-100"
+        style={{ touchAction: "none", backgroundColor: "#ffff", height: "150" }}
+        onMouseDown={startDrawing}
+        onMouseMove={draw}
+        onMouseUp={stopDrawing}
+        onMouseLeave={stopDrawing}
+        onTouchStart={startDrawing}
+        onTouchMove={draw}
+        onTouchEnd={stopDrawing}
+      />
+    </div>
   );
 });
 

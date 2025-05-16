@@ -11,7 +11,7 @@ export interface PasienResponse {
   no_rm: string;
   tanggal_lahir: string;
   no_blling: string;
-  resep: Resep[];
+  data_obat: Resep[];
 }
 
 export const getPasienById = async (id: string): Promise<PasienResponse | null> => {
@@ -19,7 +19,7 @@ export const getPasienById = async (id: string): Promise<PasienResponse | null> 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 7000); // timeout 7 detik
 
-    const response = await fetch('http://20.20.20.6/api.mersi-hospital/dev/ply/public/kep_laporan/view_pasien_igd', {
+    const response = await fetch('http://20.20.20.6/api.mersi-hospital/dev/far/public/eresep/view_eresep', {
       method: 'POST',
       signal: controller.signal,
       headers: {

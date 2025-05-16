@@ -27,7 +27,7 @@ const Resep = () => {
           noRM: pasienData.no_mr || "-",
           tanggalLahir: pasienData.tgl_lahir || "-",
           noBilling: pasienData.id_mrs || "-",
-          resep: pasienData.resep || [], // kalau belum ada data resep dari API
+          data_obat: response.metadata?.data_obat || [], // kalau belum ada data resep dari API
         });
         setFormSelesai(false);
       } else {
@@ -214,6 +214,7 @@ const Resep = () => {
                   style={{ position: "sticky", top: 0, zIndex: 1 }}
                 >
                   <tr>
+                    <th>No</th>
                     <th>Nama Obat</th>
                     <th>Satuan</th>
                     <th>Jumlah</th>
@@ -221,14 +222,22 @@ const Resep = () => {
                   </tr>
                 </thead>
                 <tbody>
+                {pasien.data_obat.length > 0 ? (
+                  pasien.data_obat.map((item, index) => (
+                    <tr key={index}>
+                      <td>{index+1}</td>
+                      <td>{item.nama_obat}</td>
+                      <td>{item.nama_satuan}</td>
+                      <td>{item.jml}</td>
+                      <td>{item.signa}</td>
+                    </tr>
+                  ))
+                ) : (
                   <tr>
-                    <td>Amoxilin</td>
-                    <td>Tablet</td>
-                    <td>10</td>
-                    <td>3x1</td>
+                    <td colSpan="4">Tidak ada resep.</td>
                   </tr>
-                  {/* Tambah resep lain jika perlu */}
-                </tbody>
+                )}
+              </tbody>
               </table>
             </div>
           </div>
